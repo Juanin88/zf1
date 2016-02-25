@@ -10,6 +10,7 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
+
     	$params=$this->_request->getParams();
     	$this->view->InlineScript()->appendFile($this->view->baseUrl().'/js/index/index.js');
     	$this->view->activemenu=1;
@@ -111,7 +112,7 @@ class IndexController extends Zend_Controller_Action
     	unset($params['action']);
     	unset($params['module']);
     	$registros = $registroPersonas->getSeguimientoRegistros($params);
-
+    	
     	$this->view->countArray= count($registros);
     	 
     	// Get a Paginator object using Zend_Paginator's built-in factory.
@@ -173,9 +174,12 @@ class IndexController extends Zend_Controller_Action
     	$this->view->guardado = 0;
     	
     	$this->view->form = new Application_Form_Index_RegistroPersona();
-    		
+    	
+    	
     	$registroPersonas = new Application_Model_DbTable_RegistroPersonas();
 		$values = $registroPersonas->getRegistroPersona($params['id_registro_personas']);
+    	//echo '<pre>'.print_r($values,true).'</pre>';die;
+    	 
     	
 		$cuenta_documentos = Array(
 				0 => '',
@@ -209,6 +213,7 @@ class IndexController extends Zend_Controller_Action
 			'fechanacimiento' => $fechanacimiento ,
 			'email' => $values['email_contacto'],
 			'estado' => $values['clave_entidad'],
+			//'mun_del' => $values['clave_municipio'],
 			'genero' => $genero,
 			'cuenta_registro' => $values['clave_cuenta_con_registro'],
 			'sabe_donde_nacio' => $values['clave_donde_nacio'],
@@ -236,6 +241,7 @@ class IndexController extends Zend_Controller_Action
     	$this->view->form->populate($arreglo);
     	
     	if( $this->_request->isPost() ){
+    		//echo '<pre>'.print_r($params,true).'</pre>';die;
     		$this->view->form->populate($params);
     	
     		$registroPersonas = new Application_Model_DbTable_RegistroPersonas();
@@ -331,6 +337,9 @@ class IndexController extends Zend_Controller_Action
     	 
     	$registroPersonas = new Application_Model_DbTable_RegistroPersonas();
     	$values = $registroPersonas->getRegistroPersona($params['id_registro_personas']);
+    	//echo '<pre>'.print_r($values,true).'</pre>';die;
+    	
+    	 
     	$cuenta_documentos = Array(
     			0 => '',
     			1 => '',
@@ -383,6 +392,8 @@ class IndexController extends Zend_Controller_Action
     	
     	$this->view->clave_municipio = $values['clave_municipio'];
     	$this->view->form->populate($arreglo);
+    	
+    	//echo '<pre>'.print_r($params,true).'</pre>';die;
     }
 }
 
