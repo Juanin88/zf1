@@ -49,7 +49,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	 * Initializing session
 	 */
 	protected function _initSession() {
-		Zend_Session::start();
+		//Zend_Session::start();
 	
 		// Instance namespace Zend_Auth
 		$authNamespace = new Zend_Session_Namespace('Zend_Auth');
