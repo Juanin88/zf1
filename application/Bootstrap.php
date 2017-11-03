@@ -37,7 +37,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 						'basePath' => APPLICATION_PATH
 				)
 				);
-	
+		die (APPLICATION_PATH);
 		$this->bootstrap('FrontController');
 		$front =  $this->getResource('FrontController');
 		//$front->registerPlugin(new Plugin_Acl() );
