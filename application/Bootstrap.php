@@ -31,19 +31,19 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		return $view;
 	}
 	
-	protected function _initAutoload() {
-		$moduleLoader = new Zend_Application_Module_Autoloader (
-				array ('namespace' => '',
-						'basePath' => APPLICATION_PATH
-				)
-				);
+// 	protected function _initAutoload() {
+// 		$moduleLoader = new Zend_Application_Module_Autoloader (
+// 				array ('namespace' => '',
+// 						'basePath' => APPLICATION_PATH
+// 				)
+// 				);
 	
-		$this->bootstrap('FrontController');
-		$front =  $this->getResource('FrontController');
-		$front->registerPlugin(new Plugin_Acl() );
+// 		$this->bootstrap('FrontController');
+// 		$front =  $this->getResource('FrontController');
+// 		$front->registerPlugin(new Plugin_Acl() );
 	
-		return $moduleLoader;
-	}
+// 		return $moduleLoader;
+// 	}
 	
 	/**
 	 * Initializing session
