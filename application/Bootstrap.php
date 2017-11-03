@@ -53,7 +53,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	
 		// Instance namespace Zend_Auth
 		$authNamespace = new Zend_Session_Namespace('Zend_Auth');
-	
+		$authNamespace->forcePasswordChange = false;
 		// clear the identity of a user who has not accessed a controller for
 		// longer than a timeout period.
 		if(isset($authNamespace->timeout) && time() > $authNamespace->timeout){
