@@ -42,5 +42,52 @@ class TestController extends Zend_Controller_Action
     	//echo $response->getMessage();
     	
     }
+    
+ 
+    public function testAction() {
+
+    }
+    
+    public function getOperationAction() {
+    	
+    	$config = array(
+    			'adapter'      => 'Zend_Http_Client_Adapter_Socket',
+    			'ssltransport' => 'tls'
+    	);
+    	
+    	$user = 'ee17b0fb-8138-4401-8e52-4876101b1faf';
+    	$password = 'g7bi=b9bZiPu';
+    	
+    	$data = '{"application_bundle":""}';
+    	$url = "https://sandbox-api.srpago.com/v1/auth/login/application";
+    	
+    	// Instantiate a client object
+    	$client = new Zend_Http_Client($url, $config);
+    	$client->setHeaders('Content-type','application/json');
+    	$client->setRawData($data);
+    	$client->setAuth($user,$password);
+    	$client->setMethod("POST");
+    	
+    	$tokenArray = json_decode( $client->request()->getBody());
+    	//echo '<pre>'.print_r($tokenArray,true).'</pre>';
+    	
+    	$token = $tokenArray->connection->token;
+    	//echo $token . '<hr>';
+    	$urlOperations = "https://sandbox-api.srpago.com/v1/operations";
+    	
+    	// Instantiate a client object
+    	$client = new Zend_Http_Client($urlOperations, $config);
+    	$client->setHeaders('AuthorizationToken','Bearer '.$token);
+    	$client->setMethod("GET");
+    	
+    	//echo $client->request()->getBody();
+    	$operations = json_decode( $client->request()->getBody());
+    	//echo '<pre>'.print_r($operations,true).'</pre>';
+    	
+    	$this->_helper->json($operations);
+    	
+    }
+    
+    
 }
 
