@@ -52,18 +52,18 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		//Zend_Session::start();
 	
 		// Instance namespace Zend_Auth
-		$authNamespace = new Zend_Session_Namespace('Zend_Auth');
-		$authNamespace->forcePasswordChange = false;
-		// clear the identity of a user who has not accessed a controller for
-		// longer than a timeout period.
-		if(isset($authNamespace->timeout) && time() > $authNamespace->timeout){
-			$storage = new Zend_Auth_Storage_Session();
-			$storage->clear();
-			$this->bootstrap('view');
-			$this->view = $this->getResource('view');
-			$this->view->errorMessageTimeout = "<strong>" . $this->view->translate('Alert') .":</strong>" . $this->view->translate('Su Sesi&oacute;n ha caducado por inactividad en el sistema');
+// 		$authNamespace = new Zend_Session_Namespace('Zend_Auth');
+// 		$authNamespace->forcePasswordChange = false;
+// 		// clear the identity of a user who has not accessed a controller for
+// 		// longer than a timeout period.
+// 		if(isset($authNamespace->timeout) && time() > $authNamespace->timeout){
+// 			$storage = new Zend_Auth_Storage_Session();
+// 			$storage->clear();
+// 			$this->bootstrap('view');
+// 			$this->view = $this->getResource('view');
+// 			$this->view->errorMessageTimeout = "<strong>" . $this->view->translate('Alert') .":</strong>" . $this->view->translate('Su Sesi&oacute;n ha caducado por inactividad en el sistema');
 	
-		}
+// 		}
 	}
 }
 
