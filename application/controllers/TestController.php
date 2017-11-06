@@ -14,7 +14,6 @@ class TestController extends Zend_Controller_Action {
     
  
     public function testAction() {
-    	phpinfo();
     	echo Application_Model_Services_Test::test();
     	
     }
