@@ -14,8 +14,12 @@ class TestController extends Zend_Controller_Action {
     
  
     public function testAction() {
+    	//
+    	try {
     	echo Application_Model_Services_Test::test();
-    	
+    	} catch (Exception $e) {
+    		echo $e;
+    	}
     }
     
     public function getOperationAction() {
